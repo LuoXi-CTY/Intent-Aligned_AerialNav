@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Towards Precise Intent-Aligned VLA Aerial Navigation via Expert-Guided GRPO</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17202a;
+        --muted: #667085;
+        --line: #d8dee8;
+        --paper: #ffffff;
+        --soft: #f5f7fb;
+        --accent: #1967d2;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei",
+          "PingFang SC", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.6;
+      }
+
+      main {
+        width: min(1480px, calc(100% - 40px));
+        margin: 0 auto;
+        padding: 56px 0 72px;
+      }
+
+      .paper-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: clamp(2rem, 3.8vw, 2.75rem);
+        line-height: 1.12;
+        font-weight: 750;
+      }
+
+      .title-line {
+        display: block;
+        white-space: nowrap;
+      }
+
+      .authors,
+      .affiliations {
+        margin: 8px auto 0;
+        color: var(--muted);
+        font-size: 1.02rem;
+      }
+
+      .authors {
+        color: var(--ink);
+        font-size: 1.1rem;
+      }
+
+      section {
+        margin-top: 48px;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .paper-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin: 0 0 22px;
+        flex-wrap: wrap;
+      }
+
+      .paper-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 39px;
+        padding: 0 17px;
+        border-radius: 999px;
+        color: #ffffff;
+        background: #2b2b2b;
+        font-size: 1rem;
+        font-weight: 700;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+      }
+
+      .paper-button:hover {
+        color: #ffffff;
+        background: #1f1f1f;
+        text-decoration: none;
+      }
+
+      .paper-button[aria-disabled="true"] {
+        cursor: default;
+      }
+
+      .button-icon {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+        fill: currentColor;
+      }
+
+      .pdf-icon {
+        width: 24px;
+        height: 24px;
+        flex: 0 0 auto;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1.6rem;
+        line-height: 1.2;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        width: min(100%, 1180px);
+        margin: 0 auto;
+      }
+
+      .highlight-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        width: min(100%, 1180px);
+        margin: 0 auto;
+      }
+
+      .highlight-item {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      h3 {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.25;
+        text-align: center;
+        font-weight: 650;
+      }
+
+      .highlight-image {
+        display: block;
+        width: 100%;
+        aspect-ratio: 2 / 1;
+        background: #ffffff;
+        object-fit: contain;
+      }
+
+      .abstract {
+        max-width: 920px;
+        margin: 0 auto;
+        color: #344054;
+        text-align: justify;
+      }
+
+      .video-item {
+        margin: 0;
+        min-width: 0;
+      }
+
+      video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #111827;
+        object-fit: cover;
+      }
+
+      figcaption {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.92rem;
+        text-align: center;
+      }
+
+      .demo-note {
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        text-align: center;
+      }
+
+      .pdf-frame {
+        width: 100%;
+        height: min(86vh, 900px);
+        min-height: 640px;
+        display: block;
+        border: 0;
+        border-radius: 0;
+        background: #202124;
+      }
+
+      .pdf-actions {
+        margin: 14px 0 0;
+        text-align: right;
+      }
+
+      .pdf-viewer {
+        border: 1px solid #202124;
+        background: #202124;
+        overflow: hidden;
+      }
+
+      .bibtex-box {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 18px;
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--soft);
+      }
+
+      pre {
+        margin: 0;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 0.92rem;
+        line-height: 1.55;
+        white-space: pre;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      @media (max-width: 560px) {
+        main {
+          width: min(100% - 24px, 1480px);
+          padding-top: 36px;
+        }
+
+        .video-grid,
+        .highlight-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pdf-frame {
+          min-height: 420px;
+        }
+
+        .title-line {
+          white-space: normal;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header class="paper-header">
+        <h1>
+          <span class="title-line">Towards Precise Intent-Aligned VLA Aerial</span>
+          <span class="title-line">Navigation via Expert-Guided GRPO</span>
+        </h1>
+        <p class="authors">
+          <strong>Tianyang Chen</strong><sup>1,2,*</sup>,
+          <strong>Wenjun Li</strong><sup>1,2,*</sup>,
+          <strong>Xin Zhou</strong><sup>1,2</sup>,
+          <strong>Yuze Wu</strong><sup>1,2,&dagger;</sup>,
+          <strong>Fei Gao</strong><sup>1,2,&dagger;</sup>
+        </p>
+        <p class="affiliations">
+          <sup>1</sup>Zhejiang University&nbsp;&nbsp;&nbsp;
+          <sup>2</sup>Differential Robotics
+        </p>
+        <p class="affiliations">
+          <sup>*</sup>Equal contribution;&nbsp;&nbsp;&nbsp;
+          <sup>&dagger;</sup>Corresponding author.
+        </p>
+      </header>
+
+      <section aria-labelledby="abstract">
+        <div class="paper-actions">
+          <a class="paper-button" href="https://github.com/LuoXi-CTY/Intent-Aligned_AerialNav" target="_blank" rel="noopener">
+            <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.6 7.6 0 0 1 8 3.86a7.6 7.6 0 0 1 1.98.27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+            </svg>
+            Code
+          </a>
+          <a class="paper-button" href="#" aria-disabled="true">
+            <svg class="pdf-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 2h11l5 5v15H4V2Z" fill="#ffffff" />
+              <path d="M15 2v6h5" fill="#d7d7d7" />
+              <path d="M7.5 16.8c1.28-.5 2.4-1.05 3.35-1.66.52-.96.92-1.92 1.18-2.86-.35-.76-.5-1.4-.45-1.9.06-.64.4-1.02.9-1.02.48 0 .78.4.72.98-.05.5-.26 1.1-.62 1.83.38.63.88 1.2 1.49 1.72.72-.06 1.28-.04 1.68.05.54.12.78.41.69.84-.08.39-.44.58-1 .52-.49-.05-1.03-.28-1.61-.69-.85.14-1.8.4-2.84.78-.65 1.1-1.29 1.8-1.9 2.07-.48.21-.9.16-1.1-.15-.12-.18-.13-.36-.04-.53Z" fill="none" stroke="#2b2b2b" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Paper
+          </a>
+        </div>
+
+        <div class="section-title">
+          <h2 id="abstract">Abstract</h2>
+        </div>
+
+        <p class="abstract">
+          Vision-Language-Action (VLA) models offer a promising end-to-end
+          paradigm for unmanned aerial vehicles (UAVs) to accomplish complex
+          tasks specified by fine-grained instructions. However, standard
+          supervised fine-tuning (SFT) suffers from data scarcity, limited
+          generalization, and weak supervision for nuanced and complicated
+          human intents.
+          Reinforcement fine-tuning offers a natural way to mitigate these
+          challenges and align policy behaviors with human intents through
+          designable feedback, but applying it to aerial navigation remains
+          challenging due to inefficient exploration in expansive continuous
+          spaces. To address these challenges, we introduce an efficient
+          reinforcement learning (RL) framework for VLA-based aerial navigation.
+          At its core, we propose <strong>EG-GRPO</strong>
+          (<strong>E</strong>xpert-<strong>G</strong>uided
+          <strong>G</strong>roup <strong>R</strong>elative
+          <strong>P</strong>olicy <strong>O</strong>ptimization) to augment
+          online rollouts with few-shot expert data. Additionally, we design a
+          heterogeneous pipeline enabling parallel simulation and inference,
+          which reduces rollout time by <strong>43.5%</strong>. Across multiple
+          tasks specified by complex human intents, EG-GRPO improves the
+          success rate to <strong>2.13&times;</strong> that of the SFT baseline,
+          while improving intent alignment performance by <strong>60.9%</strong>.
+          These results demonstrate that our framework can move aerial navigation
+          toward precise intent-aligned flight. Our videos are available on
+          <a href="https://github.com/LuoXi-CTY/Intent-Aligned_AerialNav" target="_blank" rel="noopener">
+            Intent-Aligned_AerialNav</a>, code will be released soon.
+        </p>
+      </section>
+
+      <section aria-labelledby="simulation-demos">
+        <div class="section-title">
+          <h2 id="simulation-demos">Simulation Demos</h2>
+        </div>
+
+        <div class="video-grid">
+          <figure class="video-item">
+            <video controls muted preload="metadata">
+              <source src="./videos/simulation/sim_1.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Fly a <strong>triangular</strong> path around the fountain ahead</figcaption>
+          </figure>
+          <figure class="video-item">
+            <video controls muted preload="metadata">
+              <source src="./videos/simulation/sim_2.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Go <strong>below</strong> the table tennis table and fly through to the opposite wall</figcaption>
+          </figure>
+          <figure class="video-item">
+            <video controls muted preload="metadata">
+              <source src="./videos/simulation/sim_3.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Land on the <strong>right side</strong> of the <strong>second</strong> lounge chair</figcaption>
+          </figure>
+          <figure class="video-item">
+            <video controls muted preload="metadata">
+              <source src="./videos/simulation/sim_4.mp4" type="video/mp4" />
+            </video>
+            <figcaption>Pass around the tabletop artwork on the <strong>narrow side</strong></figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section aria-labelledby="real-world-demos">
+        <div class="section-title">
+          <h2 id="real-world-demos">Real-World Demos</h2>
+        </div>
+
+        <div class="video-grid">
+          <figure class="video-item">
+            <video controls muted preload="metadata">
+              <source src="./videos/real-world/approach.mp4" type="video/mp4" />
+            </video>
+          </figure>
+          <figure class="video-item">
+            <video controls muted preload="metadata">
+              <source src="./videos/real-world/circle.mp4" type="video/mp4" />
+            </video>
+          </figure>
+          <figure class="video-item">
+            <video controls muted preload="metadata">
+              <source src="./videos/real-world/pass.mp4" type="video/mp4" />
+            </video>
+          </figure>
+          <figure class="video-item">
+            <video controls muted preload="metadata">
+              <source src="./videos/real-world/retreat.mp4" type="video/mp4" />
+            </video>
+          </figure>
+        </div>
+        <p class="demo-note">More demos coming soon...</p>
+      </section>
+
+      <section aria-labelledby="methods">
+        <div class="section-title">
+          <h2 id="methods">Method Highlights</h2>
+        </div>
+
+        <div class="highlight-grid">
+          <div class="highlight-item">
+            <img class="highlight-image" src="./pic/pipeline.jpg" alt="EG-GRPO pipeline" />
+            <h3>EG-GRPO Training Pipeline</h3>
+          </div>
+          <div class="highlight-item">
+            <img class="highlight-image" src="./pic/sim-gen.jpg" alt="Heterogeneous parallelization workflow" />
+            <h3>Heterogeneous Parallelization of Inference and Simulation</h3>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
