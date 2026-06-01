@@ -155,6 +155,15 @@
         font-weight: 650;
       }
 
+      .highlight-subtitle {
+        margin: 5px auto 0;
+        max-width: 520px;
+        color: #98a2b3;
+        font-size: 0.82rem;
+        line-height: 1.45;
+        text-align: center;
+      }
+
       .highlight-image {
         display: block;
         width: 100%;
@@ -417,10 +426,16 @@
           <div class="highlight-item">
             <img class="highlight-image" src="./pic/pipeline.jpg" alt="EG-GRPO pipeline" />
             <h3>EG-GRPO Training Pipeline</h3>
+            <p class="highlight-subtitle">
+              Initializes UAV navigation from SFT, then injects few-shot expert trajectories into GRPO groups to provide stable trajectory-level rewards for intent-aligned policy updates.
+            </p>
           </div>
           <div class="highlight-item">
             <img class="highlight-image" src="./pic/sim-gen.jpg" alt="Heterogeneous parallelization workflow" />
             <h3>Heterogeneous Parallelization of Inference and Simulation</h3>
+            <p class="highlight-subtitle">
+              Decouples Isaac Lab rollout and VLA inference with double-buffered task groups across L20 and A100 hardware, reducing rollout idle time and accelerating online RL.
+            </p>
           </div>
         </div>
       </section>
