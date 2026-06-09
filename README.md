@@ -1,4 +1,4 @@
-# Towards Intent-Aligned VLA Aerial Navigation via Efficient Expert-Guided GRPO
+# Towards Precise Intent-Aligned VLA Aerial Navigation via Expert-Guided GRPO
 
 Code will be released soon.
 
