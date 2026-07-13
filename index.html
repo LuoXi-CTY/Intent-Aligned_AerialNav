@@ -35,8 +35,62 @@
       }
 
       .paper-header {
-        text-align: center;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: #f8fafc;
         margin-bottom: 48px;
+        min-height: 520px;
+      }
+
+      .header-video-wall {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        padding: 8px;
+      }
+
+      .header-video-cell {
+        width: 100%;
+        height: 100%;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #dbe4ee;
+      }
+
+      .header-video-cell video {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto;
+        border: 0;
+        border-radius: 0;
+        object-fit: cover;
+      }
+
+      .header-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(3px);
+      }
+
+      .header-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        min-height: 520px;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 32px;
+        text-align: center;
+      }
+
+      .header-copy {
+        max-width: 980px;
       }
 
       h1 {
@@ -132,18 +186,16 @@
         margin: 0 auto;
       }
 
-      .highlight-grid {
-        display: grid;
+      .video-grid.real-video-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 24px;
-        width: min(100%, 1180px);
-        margin: 0 auto;
       }
 
       .highlight-item {
         display: flex;
         flex-direction: column;
         min-width: 0;
+        width: min(100%, 1180px);
+        margin: 0 auto;
       }
 
       h3 {
@@ -156,11 +208,11 @@
       }
 
       .highlight-subtitle {
-        margin: 5px auto 0;
-        max-width: 520px;
-        color: #98a2b3;
-        font-size: 0.82rem;
-        line-height: 1.45;
+        margin: 0 auto 18px;
+        max-width: 900px;
+        color: #475467;
+        font-size: 1.06rem;
+        line-height: 1.6;
         text-align: center;
       }
 
@@ -177,6 +229,28 @@
         margin: 0 auto;
         color: #344054;
         text-align: justify;
+      }
+
+      .overview-block {
+        width: min(100%, 1180px);
+        margin: 28px auto 0;
+      }
+
+      .overview-image {
+        display: block;
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: #ffffff;
+      }
+
+      .overview-caption {
+        max-width: 980px;
+        margin: 14px auto 0;
+        color: #475467;
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: center;
       }
 
       .video-item {
@@ -263,8 +337,27 @@
           padding-top: 36px;
         }
 
-        .video-grid,
-        .highlight-grid {
+        .paper-header,
+        .header-content {
+          min-height: auto;
+        }
+
+        .paper-header {
+          border-radius: 22px;
+        }
+
+        .header-video-wall {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-rows: repeat(6, minmax(0, 120px));
+          gap: 6px;
+          padding: 6px;
+        }
+
+        .header-content {
+          padding: 40px 20px;
+        }
+
+        .video-grid {
           grid-template-columns: 1fr;
         }
 
@@ -281,25 +374,35 @@
   <body>
     <main>
       <header class="paper-header">
-        <h1>
-          <span class="title-line">Towards Precise Intent-Aligned VLA Aerial</span>
-          <span class="title-line">Navigation via Expert-Guided GRPO</span>
-        </h1>
-        <p class="authors">
-          <strong>Tianyang Chen</strong><sup>1,2,*</sup>,
-          <strong>Wenjun Li</strong><sup>1,2,*</sup>,
-          <strong>Xin Zhou</strong><sup>1,2</sup>,
-          <strong>Yuze Wu</strong><sup>1,2,&dagger;</sup>,
-          <strong>Fei Gao</strong><sup>1,2,&dagger;</sup>
-        </p>
-        <p class="affiliations">
-          <sup>1</sup>Zhejiang University&nbsp;&nbsp;&nbsp;
-          <sup>2</sup>Differential Robotics
-        </p>
-        <p class="affiliations">
-          <sup>*</sup>Equal contribution;&nbsp;&nbsp;&nbsp;
-          <sup>&dagger;</sup>Corresponding author.
-        </p>
+        <div class="header-video-wall" aria-hidden="true">
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/1.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/2.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/3.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/4.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/5.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/6.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/7.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/8.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/9.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/10.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/11.mp4" type="video/mp4" /></video></div>
+          <div class="header-video-cell"><video autoplay muted loop playsinline preload="metadata"><source src="./videos/title/12.mp4" type="video/mp4" /></video></div>
+        </div>
+        <div class="header-overlay" aria-hidden="true"></div>
+        <div class="header-content">
+          <div class="header-copy">
+            <h1>
+              <span class="title-line">Towards Precise Intent-Aligned VLA Aerial</span>
+              <span class="title-line">Navigation via Expert-Guided GRPO</span>
+            </h1>
+            <p class="authors">
+              <strong>Anonymous Authors</strong>
+            </p>
+            <p class="affiliations">
+              Anonymous submission under review
+            </p>
+          </div>
+        </div>
       </header>
 
       <section aria-labelledby="abstract">
@@ -330,28 +433,33 @@
           tasks specified by fine-grained instructions. However, standard
           supervised fine-tuning (SFT) suffers from data scarcity, limited
           generalization, and weak supervision for nuanced and complicated
-          human intents.
-          Reinforcement fine-tuning offers a natural way to mitigate these
-          challenges and align policy behaviors with human intents through
-          designable feedback, but applying it to aerial navigation remains
-          challenging due to inefficient exploration in expansive continuous
-          spaces. To address these challenges, we introduce an efficient
-          reinforcement learning (RL) framework for VLA-based aerial navigation.
-          At its core, we propose <strong>EG-GRPO</strong>
-          (<strong>E</strong>xpert-<strong>G</strong>uided
+          human intents. Reinforcement fine-tuning offers a natural way to
+          mitigate these challenges and align policy behaviors with human
+          intents through designable feedback, but applying it to aerial
+          navigation remains challenging due to inefficient exploration in
+          expansive continuous spaces. To address these challenges, we
+          introduce an efficient reinforcement learning (RL) framework for
+          VLA-based aerial navigation. At its core, we propose
+          <strong>EG-GRPO</strong> (<strong>E</strong>xpert-<strong>G</strong>uided
           <strong>G</strong>roup <strong>R</strong>elative
-          <strong>P</strong>olicy <strong>O</strong>ptimization) to augment
-          online rollouts with few-shot expert data. Additionally, we design a
-          heterogeneous pipeline enabling parallel simulation and inference,
-          which reduces rollout time by <strong>43.5%</strong>. Across multiple
-          tasks specified by complex human intents, EG-GRPO improves the
-          success rate to <strong>2.13&times;</strong> that of the SFT baseline,
-          while improving intent alignment performance by <strong>60.9%</strong>.
-          These results demonstrate that our framework can move aerial navigation
-          toward precise intent-aligned flight. Our videos are available on
-          <a href="https://github.com/LuoXi-CTY/Intent-Aligned_AerialNav" target="_blank" rel="noopener">
-            Intent-Aligned_AerialNav</a>, code will be released soon.
+          <strong>P</strong>olicy <strong>O</strong>ptimization), which
+          incorporates few-shot expert trajectories into group-relative
+          optimization to stabilize online RL under sparse rewards.
+          Additionally, we design a heterogeneous pipeline enabling parallel
+          simulation and inference, which reduces rollout time by
+          <strong>43.5%</strong>. Across multiple tasks specified by complex
+          human intents, <strong>EG-GRPO</strong> improves the success rate
+          from <strong>18.30%</strong> to <strong>57.81%</strong> over the SFT
+          baseline. These results demonstrate that our framework can move
+          aerial navigation toward precise intent-aligned flight.
         </p>
+
+        <div class="overview-block">
+          <img class="overview-image" src="./pic/overview.jpg" alt="Overview of the reinforcement learning framework for VLA-based 3D aerial navigation" />
+          <p class="overview-caption">
+            We introduce a reinforcement learning framework tailored for VLA-based 3D aerial navigation, which integrates a high-fidelity simulation and expert-guided online training to enable UAVs to acquire precise intent-aligned flight skills.
+          </p>
+        </div>
       </section>
 
       <section aria-labelledby="simulation-demos">
@@ -362,27 +470,27 @@
         <div class="video-grid">
           <figure class="video-item">
             <video controls muted preload="metadata">
-              <source src="./videos/simulation/sim_1.mp4" type="video/mp4" />
+              <source src="./videos/simulation/1.mp4" type="video/mp4" />
             </video>
-            <figcaption>Fly a <strong>triangular</strong> path around the fountain ahead</figcaption>
+            <figcaption>Proceed through the vase from the <strong>narrow side</strong></figcaption>
           </figure>
           <figure class="video-item">
             <video controls muted preload="metadata">
-              <source src="./videos/simulation/sim_2.mp4" type="video/mp4" />
+              <source src="./videos/simulation/2.mp4" type="video/mp4" />
             </video>
-            <figcaption>Go <strong>below</strong> the table tennis table and fly through to the opposite wall</figcaption>
+            <figcaption>Orbit the fountain in <strong>clockwise</strong> direction</figcaption>
           </figure>
           <figure class="video-item">
             <video controls muted preload="metadata">
-              <source src="./videos/simulation/sim_3.mp4" type="video/mp4" />
+              <source src="./videos/simulation/3.mp4" type="video/mp4" />
             </video>
-            <figcaption>Land on the <strong>right side</strong> of the <strong>second</strong> lounge chair</figcaption>
+            <figcaption>Make way through the wooden table from the <strong>lower side</strong></figcaption>
           </figure>
           <figure class="video-item">
             <video controls muted preload="metadata">
-              <source src="./videos/simulation/sim_4.mp4" type="video/mp4" />
+              <source src="./videos/simulation/4.mp4" type="video/mp4" />
             </video>
-            <figcaption>Pass around the tabletop artwork on the <strong>narrow side</strong></figcaption>
+            <figcaption>Land on the <strong>left side</strong> of the first plastic crate</figcaption>
           </figure>
         </div>
       </section>
@@ -392,51 +500,63 @@
           <h2 id="real-world-demos">Real-World Demos</h2>
         </div>
 
-        <div class="video-grid">
+        <div class="video-grid real-video-grid">
           <figure class="video-item">
-            <video controls muted preload="metadata">
-              <source src="./videos/real-world/approach.mp4" type="video/mp4" />
+            <video controls preload="metadata">
+              <source src="./videos/real-world/1.mp4" type="video/mp4" />
             </video>
           </figure>
           <figure class="video-item">
-            <video controls muted preload="metadata">
-              <source src="./videos/real-world/circle.mp4" type="video/mp4" />
+            <video controls preload="metadata">
+              <source src="./videos/real-world/2.mp4" type="video/mp4" />
             </video>
           </figure>
           <figure class="video-item">
-            <video controls muted preload="metadata">
-              <source src="./videos/real-world/pass.mp4" type="video/mp4" />
+              <video controls preload="metadata">
+              <source src="./videos/real-world/5.mp4" type="video/mp4" />
+              </video>
+            </figure>
+          <figure class="video-item">
+            <video controls preload="metadata">
+              <source src="./videos/real-world/4.mp4" type="video/mp4" />
             </video>
           </figure>
           <figure class="video-item">
-            <video controls muted preload="metadata">
-              <source src="./videos/real-world/retreat.mp4" type="video/mp4" />
+              <video controls preload="metadata">
+              <source src="./videos/real-world/3.mp4" type="video/mp4" />
+              </video>
+            </figure>
+          <figure class="video-item">
+            <video controls preload="metadata">
+              <source src="./videos/real-world/6.mp4" type="video/mp4" />
             </video>
           </figure>
         </div>
-        <p class="demo-note">More demos coming soon...</p>
       </section>
 
-      <section aria-labelledby="methods">
+      <section aria-labelledby="eg-grpo">
         <div class="section-title">
-          <h2 id="methods">Method Highlights</h2>
+          <h2 id="eg-grpo">EG-GRPO</h2>
         </div>
 
-        <div class="highlight-grid">
-          <div class="highlight-item">
-            <img class="highlight-image" src="./pic/pipeline.jpg" alt="EG-GRPO pipeline" />
-            <h3>EG-GRPO Training Pipeline</h3>
-            <p class="highlight-subtitle">
-              Initializes UAV navigation from SFT, then injects few-shot expert trajectories into GRPO groups to provide stable trajectory-level rewards for intent-aligned policy updates.
-            </p>
-          </div>
-          <div class="highlight-item">
-            <img class="highlight-image" src="./pic/sim-gen.jpg" alt="Heterogeneous parallelization workflow" />
-            <h3>Heterogeneous Parallelization of Inference and Simulation</h3>
-            <p class="highlight-subtitle">
-              Decouples Isaac Lab rollout and VLA inference with double-buffered task groups across L20 and A100 hardware, reducing rollout idle time and accelerating online RL.
-            </p>
-          </div>
+        <div class="highlight-item">
+          <p class="highlight-subtitle">
+            First, the VLA policy generates actions according to visual observations and nuanced instructions. Then, online trajectories are collected in parallelized simulations and combined with few-shot expert trajectories to construct mixed trajectory groups. Finally, the reward model evaluates these trajectories based on task performance, providing fine-grained rewards for updating VLA models.
+          </p>
+          <img class="highlight-image" src="./pic/pipeline.jpg" alt="EG-GRPO pipeline" />
+        </div>
+      </section>
+
+      <section aria-labelledby="heterogeneous-parallelization">
+        <div class="section-title">
+          <h2 id="heterogeneous-parallelization">Heterogeneous Parallelization of Inference and Simulation</h2>
+        </div>
+
+        <div class="highlight-item">
+          <p class="highlight-subtitle">
+            Conventional serial execution alternates between simulation on RT-core GPUs (L20) and VLA inference on compute GPUs (A100), causing severe hardware idling. Our framework decouples these stages via a dual-group scheduling strategy with a double-buffer mechanism, reducing rollout time by <strong>43.5%</strong>.
+          </p>
+          <img class="highlight-image" src="./pic/sim-gen.jpg" alt="Heterogeneous parallelization workflow" />
         </div>
       </section>
     </main>
