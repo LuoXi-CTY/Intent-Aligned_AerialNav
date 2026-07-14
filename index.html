@@ -40,6 +40,9 @@
         border: 1px solid var(--line);
         border-radius: 28px;
         background: #f8fafc;
+        background-image: url("./posters/title-collage.jpg");
+        background-position: center;
+        background-size: cover;
         margin-bottom: 48px;
         min-height: 520px;
       }
@@ -52,6 +55,12 @@
         grid-template-rows: repeat(3, minmax(0, 1fr));
         gap: 8px;
         padding: 8px;
+        opacity: 0;
+        transition: opacity 0.45s ease;
+      }
+
+      .paper-header.videos-ready .header-video-wall {
+        opacity: 1;
       }
 
       .header-video-cell {
@@ -373,7 +382,7 @@
   </head>
   <body>
     <main>
-      <header class="paper-header">
+      <header class="paper-header" id="paper-header">
         <div class="header-video-wall" aria-hidden="true">
           <div class="header-video-cell"><video autoplay muted loop playsinline preload="auto" poster="./posters/title/1.jpg"><source src="./videos/title/1.mp4" type="video/mp4" /></video></div>
           <div class="header-video-cell"><video autoplay muted loop playsinline preload="auto" poster="./posters/title/2.jpg"><source src="./videos/title/2.mp4" type="video/mp4" /></video></div>
@@ -560,5 +569,44 @@
         </div>
       </section>
     </main>
+    <script>
+      (function () {
+        const header = document.getElementById("paper-header");
+        const titleVideos = Array.from(document.querySelectorAll(".header-video-cell video"));
+
+        if (!header || titleVideos.length === 0) {
+          return;
+        }
+
+        let readyCount = 0;
+        let revealed = false;
+        const threshold = Math.min(4, titleVideos.length);
+
+        const revealVideos = function () {
+          if (revealed) {
+            return;
+          }
+          revealed = true;
+          header.classList.add("videos-ready");
+        };
+
+        titleVideos.forEach((video) => {
+          const markReady = function () {
+            readyCount += 1;
+            if (readyCount >= threshold) {
+              revealVideos();
+            }
+          };
+
+          if (video.readyState >= 2) {
+            markReady();
+          } else {
+            video.addEventListener("loadeddata", markReady, { once: true });
+          }
+        });
+
+        window.setTimeout(revealVideos, 1800);
+      })();
+    </script>
   </body>
 </html>
